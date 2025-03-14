@@ -13,14 +13,14 @@ public class User
         this.screenName = screenName;
     }
 
-    public void addTweet(Tweet tweet)
+    public void makeTweet(String text)
     {
-        tweets.add(tweet);
+        tweets.add(new Tweet(this, text));
     }
 
-    public void addRetweet(Tweet tweet)
+    public void makeRetweet(Tweet tweet)
     {
-        tweets.add(new Tweet(tweet));
+        tweets.add(new Tweet(this, tweet));
     }
 
     public String getScreenName()
@@ -31,6 +31,12 @@ public class User
     public List<Tweet> getTweets()
     {
         return tweets;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return screenName.hashCode();
     }
 
     @Override

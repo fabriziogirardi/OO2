@@ -1,6 +1,7 @@
 package io.github.unlp.ejercicio01;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,11 +22,6 @@ public class TwitterTest
         user1 = new User("user1");
         user2 = new User("user2");
         user3 = new User("user1");
-        tweet1 = new Tweet("tweet1");
-        tweet2 = new Tweet("tweet2");
-
-        user1.addTweet(tweet1);
-        user2.addTweet(tweet2);
     }
 
     @Test
@@ -44,5 +40,34 @@ public class TwitterTest
         twitter.addUser(user3);
 
         assertEquals(1, twitter.getUsers().size());
+    }
+
+    @Test
+    public void testAgregarTweets()
+    {
+        user1.makeTweet("tweet1");
+        user1.makeTweet("tweet2");
+
+        assertEquals(2, user1.getTweets().size());
+    }
+
+    @Test
+    public void testAgregarRetweets()
+    {
+        user1.makeTweet("tweet1");
+        user1.makeTweet("tweet2");
+        user2.makeRetweet(user1.getTweets().get(0));
+        user2.makeRetweet(user1.getTweets().get(1));
+
+        assertEquals(2, user2.getTweets().size());
+    }
+
+    @Test
+    public void testLosRetweetsNoContienenTexto()
+    {
+        user1.makeTweet("tweet1");
+        user2.makeRetweet(user1.getTweets().get(0));
+
+        assertNull(user2.getTweets().get(0).getText());
     }
 }
