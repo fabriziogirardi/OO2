@@ -8,32 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PosiblesPartidasTest
 {
-    private final Jugada piedra  = new Piedra();
-    private final Jugada tijera  = new Tijera();
-    private final Jugada papel   = new Papel();
-    private final Jugada lagarto = new Lagarto();
-    private final Jugada spock   = new Spock();
-
-    @BeforeEach
-    public void setUp()
-    {
-        piedra.agregarGanaContra(tijera);
-        piedra.agregarGanaContra(lagarto);
-        tijera.agregarGanaContra(papel);
-        tijera.agregarGanaContra(lagarto);
-        papel.agregarGanaContra(piedra);
-        papel.agregarGanaContra(spock);
-        lagarto.agregarGanaContra(papel);
-        lagarto.agregarGanaContra(spock);
-        spock.agregarGanaContra(tijera);
-        spock.agregarGanaContra(piedra);
-    }
-
     @Test
     public void testPiedraContraPiedra()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", piedra);
-        Jugador jugador2 = new Jugador("Jugador 2", piedra);
+        Jugador jugador1 = new Jugador("Jugador 1", new Piedra());
+        Jugador jugador2 = new Jugador("Jugador 2", new Piedra());
         Partida partida  = new Partida(jugador1, jugador2);
         assertEquals("Empate", partida.getResultado());
     }
@@ -41,8 +20,8 @@ public class PosiblesPartidasTest
     @Test
     public void testTijeraContraTijera()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", tijera);
-        Jugador jugador2 = new Jugador("Jugador 2", tijera);
+        Jugador jugador1 = new Jugador("Jugador 1", new Tijera());
+        Jugador jugador2 = new Jugador("Jugador 2", new Tijera());
         Partida partida  = new Partida(jugador1, jugador2);
         assertEquals("Empate", partida.getResultado());
     }
@@ -50,8 +29,8 @@ public class PosiblesPartidasTest
     @Test
     public void testPapelContraPapel()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", papel);
-        Jugador jugador2 = new Jugador("Jugador 2", papel);
+        Jugador jugador1 = new Jugador("Jugador 1", new Papel());
+        Jugador jugador2 = new Jugador("Jugador 2", new Papel());
         Partida partida  = new Partida(jugador1, jugador2);
         assertEquals("Empate", partida.getResultado());
     }
@@ -59,8 +38,8 @@ public class PosiblesPartidasTest
     @Test
     public void testLagartoContraLagarto()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", lagarto);
-        Jugador jugador2 = new Jugador("Jugador 2", lagarto);
+        Jugador jugador1 = new Jugador("Jugador 1", new Lagarto());
+        Jugador jugador2 = new Jugador("Jugador 2", new Lagarto());
         Partida partida  = new Partida(jugador1, jugador2);
         assertEquals("Empate", partida.getResultado());
     }
@@ -68,8 +47,8 @@ public class PosiblesPartidasTest
     @Test
     public void testSpockContraSpock()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", spock);
-        Jugador jugador2 = new Jugador("Jugador 2", spock);
+        Jugador jugador1 = new Jugador("Jugador 1", new Spock());
+        Jugador jugador2 = new Jugador("Jugador 2", new Spock());
         Partida partida  = new Partida(jugador1, jugador2);
         assertEquals("Empate", partida.getResultado());
     }
@@ -77,90 +56,90 @@ public class PosiblesPartidasTest
     @Test
     public void testPiedraContraTijera()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", piedra);
-        Jugador jugador2 = new Jugador("Jugador 2", tijera);
+        Jugador jugador1 = new Jugador("Jugador 1", new Piedra());
+        Jugador jugador2 = new Jugador("Jugador 2", new Tijera());
         Partida partida  = new Partida(jugador1, jugador2);
-        assertEquals("Jugador 1", partida.getResultado());
+        assertEquals("Gana piedra", partida.getResultado());
     }
 
     @Test
     public void testPiedraContraPapel()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", piedra);
-        Jugador jugador2 = new Jugador("Jugador 2", papel);
+        Jugador jugador1 = new Jugador("Jugador 1", new Piedra());
+        Jugador jugador2 = new Jugador("Jugador 2", new Papel());
         Partida partida  = new Partida(jugador1, jugador2);
-        assertEquals("Jugador 2", partida.getResultado());
+        assertEquals("Gana papel", partida.getResultado());
     }
 
     @Test
     public void testPiedraContraLagarto()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", piedra);
-        Jugador jugador2 = new Jugador("Jugador 2", lagarto);
+        Jugador jugador1 = new Jugador("Jugador 1", new Piedra());
+        Jugador jugador2 = new Jugador("Jugador 2", new Lagarto());
         Partida partida  = new Partida(jugador1, jugador2);
-        assertEquals("Jugador 1", partida.getResultado());
+        assertEquals("Gana piedra", partida.getResultado());
     }
 
     @Test
     public void testPiedraContraSpock()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", piedra);
-        Jugador jugador2 = new Jugador("Jugador 2", spock);
+        Jugador jugador1 = new Jugador("Jugador 1", new Piedra());
+        Jugador jugador2 = new Jugador("Jugador 2", new Spock());
         Partida partida  = new Partida(jugador1, jugador2);
-        assertEquals("Jugador 2", partida.getResultado());
+        assertEquals("Gana spock", partida.getResultado());
     }
 
     @Test
     public void testTijeraContraPapel()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", tijera);
-        Jugador jugador2 = new Jugador("Jugador 2", papel);
+        Jugador jugador1 = new Jugador("Jugador 1", new Tijera());
+        Jugador jugador2 = new Jugador("Jugador 2", new Papel());
         Partida partida  = new Partida(jugador1, jugador2);
-        assertEquals("Jugador 1", partida.getResultado());
+        assertEquals("Gana tijera", partida.getResultado());
     }
 
     @Test
     public void testTijeraContraLagarto()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", tijera);
-        Jugador jugador2 = new Jugador("Jugador 2", lagarto);
+        Jugador jugador1 = new Jugador("Jugador 1", new Tijera());
+        Jugador jugador2 = new Jugador("Jugador 2", new Lagarto());
         Partida partida  = new Partida(jugador1, jugador2);
-        assertEquals("Jugador 1", partida.getResultado());
+        assertEquals("Gana tijera", partida.getResultado());
     }
 
     @Test
     public void testTijeraContraSpock()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", tijera);
-        Jugador jugador2 = new Jugador("Jugador 2", spock);
+        Jugador jugador1 = new Jugador("Jugador 1", new Tijera());
+        Jugador jugador2 = new Jugador("Jugador 2", new Spock());
         Partida partida  = new Partida(jugador1, jugador2);
-        assertEquals("Jugador 2", partida.getResultado());
+        assertEquals("Gana spock", partida.getResultado());
     }
 
     @Test
     public void testPapelContraLagarto()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", papel);
-        Jugador jugador2 = new Jugador("Jugador 2", lagarto);
+        Jugador jugador1 = new Jugador("Jugador 1", new Papel());
+        Jugador jugador2 = new Jugador("Jugador 2", new Lagarto());
         Partida partida  = new Partida(jugador1, jugador2);
-        assertEquals("Jugador 2", partida.getResultado());
+        assertEquals("Gana lagarto", partida.getResultado());
     }
 
     @Test
     public void testPapelContraSpock()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", papel);
-        Jugador jugador2 = new Jugador("Jugador 2", spock);
+        Jugador jugador1 = new Jugador("Jugador 1", new Papel());
+        Jugador jugador2 = new Jugador("Jugador 2", new Spock());
         Partida partida  = new Partida(jugador1, jugador2);
-        assertEquals("Jugador 1", partida.getResultado());
+        assertEquals("Gana papel", partida.getResultado());
     }
 
     @Test
     public void testLagartoContraSpock()
     {
-        Jugador jugador1 = new Jugador("Jugador 1", lagarto);
-        Jugador jugador2 = new Jugador("Jugador 2", spock);
+        Jugador jugador1 = new Jugador("Jugador 1", new Lagarto());
+        Jugador jugador2 = new Jugador("Jugador 2", new Spock());
         Partida partida  = new Partida(jugador1, jugador2);
-        assertEquals("Jugador 1", partida.getResultado());
+        assertEquals("Gana lagarto", partida.getResultado());
     }
 }

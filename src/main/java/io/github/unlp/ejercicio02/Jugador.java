@@ -1,6 +1,6 @@
 package io.github.unlp.ejercicio02;
 
-import io.github.unlp.ejercicio02.jugadas.Jugada;
+import io.github.unlp.ejercicio02.jugadas.*;
 
 public class Jugador
 {
@@ -23,7 +23,7 @@ public class Jugador
         return jugada;
     }
 
-    public boolean ganaContra(Jugador jugador)
+    public String ganaContra(Jugador jugador)
     {
         return jugada.ganaContra(jugador.getJugada());
     }

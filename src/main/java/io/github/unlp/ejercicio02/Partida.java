@@ -23,17 +23,6 @@ public class Partida
 
     public String getResultado()
     {
-        if (jugador1.ganaContra(jugador2))
-        {
-            return jugador1.getNombre();
-        }
-        else if (jugador2.ganaContra(jugador1))
-        {
-            return jugador2.getNombre();
-        }
-        else
-        {
-            return "Empate";
-        }
+        return jugador1.ganaContra(jugador2);
     }
 }
